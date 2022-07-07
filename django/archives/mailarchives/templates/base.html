@@ -17,6 +17,7 @@
   <meta name="copyright" content="The PostgreSQL Global Development Group" />
   <link href="/media-archives/css/fontawesome.css?{{gitrev}}" rel="stylesheet">
   <link rel="stylesheet" href="/media-archives/css/bootstrap.min.css?{{gitrev}}">
+  <link rel="stylesheet" href="/media-archives/css/bootstrap-table.min.css?{{gitrev}}">
   <link rel="shortcut icon" href="/favicon.ico" />
   {%if newstags %}
     {%comment%}Default RSS links are only shown on pages that have newstags set{%endcomment%}
@@ -51,7 +52,11 @@
                 <li class="nav-item p-2"><a href="/developer/" title="Developers">Developers</a></li>
                 <li class="nav-item p-2"><a href="/support/" title="Support">Support</a></li>
                 <li class="nav-item p-2"><a href="/about/donate/" title="Donate">Donate</a></li>
-                <li class="nav-item p-2"><a href="/account/" title="Your account">Your account</a></li>
+                {% if user.is_authenticated %}
+                  <li class="nav-item p-2"><a href="/account/" title="Your account"><i class="fa fa-user-circle" aria-hidden="true"></i> {{ user.get_username }}</a></li>
+                {% else %}
+                  <li class="nav-item p-2"><a href="/account/" title="Your account"><i class="fa fa-user-circle" aria-hidden="true"></i> Login</a></li>
+                {% endif %}
               </ul>
              <form role="search" method="get" action="{{ PGWEB_ADDRESS }}/search/">
                <div class="input-group">
@@ -103,6 +108,7 @@
     <script src="/media-archives/js/jquery-3.2.1.slim.min.js?{{gitrev}}"></script>
     <script src="/media-archives/js/popper.min.js?{{gitrev}}"></script>
     <script src="/media-archives/js/bootstrap.min.js?{{gitrev}}"></script>
+    <script src="/media-archives/js/bootstrap-table.min.js?{{gitrev}}"></script>
     <script src="/media-archives/js/main.js?{{gitrev}}"></script>
   </body>
 </html>

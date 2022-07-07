@@ -30,3 +30,23 @@ _gaq.push(['_trackPageview']);
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
+
+/*
+*
+Monthlist search function
+*/
+
+function monthlistSearch() {
+    $('.panel-collapse.in')
+        .collapse('hide');
+    var input = document.getElementById("MonthlistSearch");
+    var filter = input.value.toLowerCase();
+    var nodes = document.getElementsByClassName('panel-title');
+    for (i = 0; i < nodes.length; i++) {
+        if (nodes[i].innerText.toLowerCase().includes(filter)) {
+            nodes[i].style.display = "block";
+        } else {
+            nodes[i].style.display = "none";
+        }
+    }
+}

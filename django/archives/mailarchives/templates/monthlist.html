@@ -10,24 +10,49 @@
 {%include "searchform.html" %}
 
 <h2>View Archives</h2>
+<div class="col-sm-5 pl-0">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+    </div>
+    <input type="text" id="MonthlistSearch" class="form-control" onkeyup="monthlistSearch()" placeholder="Enter year">
+  </div>
+</div>
 
 {%regroup months by year as yearmonth %}
-<table class="table table-striped table-sm thread-list">
-  <tbody>
-    {% for year in yearmonth %}
-      <tr>
-        <th colspan="3">{{ year.grouper }}</th>
-      </tr>
-      {% for month in year.list %}
-        <tr>
-          <th scope="row">
-            <a href="/list/{{list.listname}}/{{month.year}}-{{month.month|stringformat:"02d"}}/">{{month.date|date:"F Y"}}</a>
-          </th>
-          <td><a href="/list/{{list.listname}}/{{month.year}}-{{month.month|stringformat:"02d"}}/">View Archives</a></td>
-          <td><a href="/list/{{list.listname}}/mbox/{{list.listname}}.{{month.year}}{{month.month|stringformat:"02d"}}">Download mbox</a></td>
-        </tr>
-      {% endfor %}
-    {% endfor %}
-  </tbody>
-</table>
+{% for year in yearmonth %}
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading{{ year.grouper }}">
+        <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ year.grouper }}" aria-expanded="false" aria-controls="collapse{{ year.grouper }}">
+          {{ year.grouper }}
+        </a>
+      </h4>
+      </div>
+      <div id="collapse{{ year.grouper }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{ year.grouper }}">
+        <div>
+          <table id="monthlist-table">
+            <thead>
+              <tr id="monthlist-table-header">
+                <th id="monthlist-table-header-month" class="list-table-header-text" data-field="monthname">Month</th>
+                <th id="monthlist-table-header-action" class="list-table-header-text" data-field="viewarchives">View Archives</th>
+                <th id="monthlist-table-header-action" class="list-table-header-text" data-field="mbox">Download mbox</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for month in year.list %}
+              <tr>
+                <th id="monthlist-table-data-th" scope="row"><a href="/list/{{list.listname}}/{{month.year}}-{{month.month|stringformat:"02d"}}/">{{month.date|date:"F Y"}}</a></th>
+                <td id="monthlist-table-data-td" ><a id="monthlist-table-data-td-a" href="/list/{{list.listname}}/{{month.year}}-{{month.month|stringformat:"02d"}}/"><i id="monthlist-table-data-i" class="fa fa-archive" aria-hidden="true"></i></a></td>
+                <td id="monthlist-table-data-td" ><a id="monthlist-table-data-td-a" href="/list/{{list.listname}}/mbox/{{list.listname}}.{{month.year}}{{month.month|stringformat:"02d"}}"><i id="monthlist-table-data-i" class="fa fa-download" aria-hidden="true"></i></a></td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
 {%endblock%}
