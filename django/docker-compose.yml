@@ -1,0 +1,25 @@
+version: '3'
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pgarchives
+    container_name: django-server
+    restart: unless-stopped
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - 8888:8888
+    networks:
+      - app-network
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8888
+
+networks:
+  app-network:
+    driver: bridge
