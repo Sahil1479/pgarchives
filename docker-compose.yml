@@ -2,7 +2,7 @@ version: '3'
 services:
   django:
     build:
-      context: .
+      context: django
       dockerfile: Dockerfile
     image: pgarchives
     container_name: django-server
@@ -25,13 +25,12 @@ services:
       - |
         python manage.py runserver 0.0.0.0:8888
   postgresqldb:
-    image: 'bitnami/postgresql:latest'
+    image: postgres
     container_name: postgresqldb
     restart: unless-stopped
     env_file: .env
     environment:
-      - POSTGRESQL_USERNAME=$DB_USER
-      - POSTGRESQL_PASSWORD=$DB_PASSWORD
+      - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRESQL_DATABASE=$DB_NAME
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $DB_USER"]
@@ -40,6 +39,7 @@ services:
       retries: 5
     volumes:
       - dbdata:/bitnami/postgresql
+      - .:/app
     networks:
       - app-network
 
