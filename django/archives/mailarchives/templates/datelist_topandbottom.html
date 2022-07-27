@@ -1,14 +1,20 @@
 {%if messages%}
 <h3>Browse Archives</h3>
+<nav aria-label="...">
+<ul class="pagination" style="padding-left: 0px; margin-bottom: 15px;">
 {%with messages|first as firstmsg%}
-<a href="/list/{{list.listname}}/before/{{firstmsg.shortdate}}">Prev</a>
+<a class="daylinks-pagination-prev" href="/list/{{list.listname}}/before/{{firstmsg.shortdate}}" tabindex="-1"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Prev </a>
 {%endwith%}
-|
 {%with messages|last as lastmsg%}
-<a href="/list/{{list.listname}}/since/{{lastmsg.shortdate}}">Next</a>
+<a class="daylinks-pagination-next" href="/list/{{list.listname}}/since/{{lastmsg.shortdate}}"> Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 {%endwith%}
-{%endif%}
-
+</ul>
+</nav>
+{%endif%} 
 {%if daysinmonth%}
-<div class="daylinks">Jump to day: {%for d in daysinmonth%}<a href="/list/{{list.listname}}/since/{{yearmonth}}{{d|stringformat:"02d"}}0000/">{{d}}</a> {%endfor%}</div>
+<div class="daylinks">
+    Jump to day: {%for d in daysinmonth%}
+    <a class="daylink_pagination" href="/list/{{list.listname}}/since/{{yearmonth}}{{d|stringformat:"02d"}}0000/">{{d}}</a> 
+    {%endfor%}
+</div>
 {%endif%}

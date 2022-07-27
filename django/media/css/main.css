@@ -162,6 +162,60 @@ hr {
   margin: 1em 0 2em 0;
 }
 
+/** Day Links */
+.daylinks-pagination-prev {
+  color: #326690 !important;
+  padding: 7px;
+  border: 2px solid #8d8f91;
+  border-radius: 8px 0px 0px 8px;
+  margin-right: 3px;
+  font-size: 14px;
+}
+
+.daylinks-pagination-prev:hover {
+  color: #ffffff !important;
+  background-color: #326690;
+}
+
+
+.daylinks-pagination-prev:hover i {
+  color: #ffffff !important;
+}
+
+.daylinks-pagination-next {
+  color: #326690 !important;
+  padding: 7px;
+  border: 2px solid #8d8f91;
+  border-radius: 0px 8px 8px 0px;
+  font-size: 14px;
+}
+
+.daylinks-pagination-next:hover {
+  color: #ffffff !important;
+  background-color: #326690;
+}
+
+.daylinks-pagination-next:hover i {
+  color: #ffffff !important;
+}
+
+.daylink_pagination {
+  background: #f1f3f4;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #9e9d9d;
+  color: #326690 !important;
+}
+
+.daylink_pagination:hover {
+  color: #326690 !important;
+  background-color: #e1f0ff;
+}
+
+.daylist_data:hover {
+  background-color: #d9f3ff !important;
+}
+
 /** HOME PAGE */
 .panel-default>.panel-heading {
   color: #333;

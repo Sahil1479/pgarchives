@@ -21,19 +21,19 @@
     <table class="table table-striped table-sm thread-list">
       <thead>
         <tr>
-          <th scope="col" style="width: 70%;">Thread</th>
-          <th scope="col" style="width: 25%;">Author</th>
-          <th scope="col" style="width: 5%;">Time</th>
+          <th scope="col" style="width: 60%; background: #336791; padding: 3px; color: white !important">Thread <i class="fas fa-code-merge"></i></th>
+          <th scope="col" style="width: 30%;  background: #336791; padding: 3px; color: white !important">Author <i class="fa fa-user" aria-hidden="true" style="color: aliceblue;"></i></th>
+          <th scope="col" style="width: 10%;  background: #336791; padding: 3px; color: white !important">Time <i class="fa fa-clock-o" aria-hidden="true" style="color: aliceblue;"></i></th>
         </tr>
       </thead>
       <tbody>
   {%endifchanged%}
-  <tr>
-    <th scope="row">
+  <tr class="daylist_data">
+    <th scope="row" style="padding: 3px;">
       <a href="/message-id/{{m.messageid|urlencode}}">{{m.subject|default:"[No subject]"}}{% if m.has_attachment %} &#x1f4ce;{% endif %}</a>
     </th>
-    <td>{{m.mailfrom|nameonly}}</td>
-    <td>{{m.date.time|time:"H:i"}}</td>
+    <td style="padding: 3px;">{{m.mailfrom|nameonly}}</td>
+    <td style="padding: 3px;">{{m.date.time|time:"H:i"}}</td>
   </tr>
   {%if forloop.last%}
       </tbody>
