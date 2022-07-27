@@ -1,2 +1,4 @@
 env/
 django/archives/settings.py
+django/Dockerfile
+docker-compose.yml
