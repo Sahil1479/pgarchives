@@ -84,9 +84,7 @@ if __name__ == "__main__":
     except Exception:
         connstr = 'need_connstr'
 
-    conn = psycopg2.connect(dbname="archives",
-                            user="postgres",
-                            password="postgres")
+    conn = psycopg2.connect(connstr)
     curs = conn.cursor()
 
     # Take an advisory lock to force serialization.
