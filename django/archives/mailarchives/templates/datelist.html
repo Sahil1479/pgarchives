@@ -10,35 +10,38 @@
 {%include "searchform.html"%}
 
 {%include "datelist_topandbottom.html"%}
-
 {%for m in messages%}
   {%ifchanged m.date.date%}
     {%if not forloop.first%}
-        </tbody>
+      </tbody>
       </table>
     {%endif%}
     <h2>{{m.date.date}}</h2>
-    <table class="table table-striped table-sm thread-list">
-      <thead>
+    <table
+      id="table"
+      data-toggle="table"
+      data-pagination="true"
+      data-page-list="[10, 20, 50, 100, all]"
+      data-buttons-class="primary"
+      data-search="true">
+      <thead class="list-header">
         <tr>
-          <th scope="col" style="width: 60%; background: #336791; padding: 3px; color: white !important">Thread <i class="fas fa-code-merge"></i></th>
-          <th scope="col" style="width: 30%;  background: #336791; padding: 3px; color: white !important">Author <i class="fa fa-user" aria-hidden="true" style="color: aliceblue;"></i></th>
-          <th scope="col" style="width: 10%;  background: #336791; padding: 3px; color: white !important">Time <i class="fa fa-clock-o" aria-hidden="true" style="color: aliceblue;"></i></th>
+          <th class="list-table-header-text" data-field="threadname">Thread</th>
         </tr>
       </thead>
       <tbody>
   {%endifchanged%}
-  <tr class="daylist_data">
-    <th scope="row" style="padding: 3px;">
-      <a href="/message-id/{{m.messageid|urlencode}}">{{m.subject|default:"[No subject]"}}{% if m.has_attachment %} &#x1f4ce;{% endif %}</a>
-    </th>
-    <td style="padding: 3px;">{{m.mailfrom|nameonly}}</td>
-    <td style="padding: 3px;">{{m.date.time|time:"H:i"}}</td>
-  </tr>
-  {%if forloop.last%}
-      </tbody>
-    </table>
-  {%endif%}
+      <tr class="daylist_data">
+        <th scope="row" style="padding: 3px;">
+          <a href="/message-id/{{m.messageid|urlencode}}">{{m.subject|default:"[No subject]"}} {% if m.has_attachment %} &#x1f4ce;{% endif %}</a>
+          <br>
+          <p style="margin-top: 0.5rem;"><i class="fa fa-user" aria-hidden="true" style="color: #004b87;"></i> {{m.mailfrom|nameonly}} | <i style="color: #004b87;" class="fa">&#xf017;</i> {{m.date.time|time:"H:i"}}</p>
+        </th>
+      </tr>
+      {%if forloop.last%}
+    </tbody>
+  </table>
+{%endif%}
 {%endfor%}
 
 {%include "datelist_topandbottom.html"%}
