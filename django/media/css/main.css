@@ -795,6 +795,7 @@ ul.actions {
   
   #pgSideNav ul li:hover {
     background: #336791;
+    border-radius: 5px !important;
   }
   
   #pgSideNav ul li:hover a {
