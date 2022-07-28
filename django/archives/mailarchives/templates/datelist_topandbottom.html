@@ -13,8 +13,11 @@
 {%endif%} 
 {%if daysinmonth%}
 <div class="daylinks">
-    Jump to day: {%for d in daysinmonth%}
+	<p>Jump to day: </p>
+	<div class="daylist_pagination">
+	{%for d in daysinmonth%}
     <a class="daylink_pagination" href="/list/{{list.listname}}/since/{{yearmonth}}{{d|stringformat:"02d"}}0000/">{{d}}</a> 
     {%endfor%}
+	</div>
 </div>
 {%endif%}

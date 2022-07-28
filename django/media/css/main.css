@@ -199,12 +199,19 @@ hr {
   color: #ffffff !important;
 }
 
+.daylist_pagination {
+  display: inline-block;
+}
+
 .daylink_pagination {
   background: #f1f3f4;
-  padding: 5px;
   text-align: center;
   border: 1px solid #9e9d9d;
   color: #326690 !important;
+  float: left;
+  padding: 6px;
+  margin: 3px;
+  text-decoration: none;
 }
 
 .daylink_pagination:hover {
