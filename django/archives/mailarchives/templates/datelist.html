@@ -26,17 +26,19 @@
       data-search="true">
       <thead class="list-header">
         <tr>
-          <th class="list-table-header-text" data-field="threadname">Thread</th>
+          <th scope="col" style="width: 70%;" class="list-table-header-text" data-field="threadname">Thread</th>
+          <th scope="col" style="width: 25%;" class="list-table-header-text" data-field="threadauthor">Author</th>
+          <th scope="col" style="width: 5%;" class="list-table-header-text" data-field="threadtime">Time</th>
         </tr>
       </thead>
       <tbody>
   {%endifchanged%}
       <tr class="daylist_data">
-        <th scope="row" style="padding: 3px;">
+        <th style="padding: 3px;">
           <a href="/message-id/{{m.messageid|urlencode}}">{{m.subject|default:"[No subject]"}} {% if m.has_attachment %} &#x1f4ce;{% endif %}</a>
-          <br>
-          <p style="margin-top: 0.5rem;"><i class="fa fa-user" aria-hidden="true" style="color: #004b87;"></i> {{m.mailfrom|nameonly}} | <i style="color: #004b87;" class="fa">&#xf017;</i> {{m.date.time|time:"H:i"}}</p>
         </th>
+        <td><i class="fa fa-user" aria-hidden="true" style="color: #004b87;"></i> {{m.mailfrom|nameonly}}</td>
+        <td><i style="color: #004b87;" class="fa">&#xf017;</i> {{m.date.time|time:"H:i"}}</td>
       </tr>
       {%if forloop.last%}
     </tbody>
