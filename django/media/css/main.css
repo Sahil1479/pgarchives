@@ -166,7 +166,7 @@ hr {
 .daylinks-pagination-prev {
   color: #326690 !important;
   padding: 7px;
-  border: 2px solid #8d8f91;
+  border: 1px solid #9e9d9d;
   border-radius: 8px 0px 0px 8px;
   margin-right: 3px;
   font-size: 14px;
@@ -185,7 +185,7 @@ hr {
 .daylinks-pagination-next {
   color: #326690 !important;
   padding: 7px;
-  border: 2px solid #8d8f91;
+  border: 1px solid #9e9d9d;
   border-radius: 0px 8px 8px 0px;
   font-size: 14px;
 }
@@ -199,6 +199,7 @@ hr {
   color: #ffffff !important;
 }
 
+
 .daylink_pagination {
   background: #f1f3f4;
   padding: 5px;
@@ -208,12 +209,33 @@ hr {
 }
 
 .daylink_pagination:hover {
-  color: #326690 !important;
-  background-color: #e1f0ff;
+  color: white !important;
+  background-color: #326690;
 }
 
 .daylist_data:hover {
-  background-color: #d9f3ff !important;
+  background-color: #efefef !important;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #336791;
+  border-color: #007bff;
+}
+
+.page-list .btn-group .dropdown-menu> .dropdown-item {
+  color: #336791 !important;
+}
+
+.btn-primary:active {
+  background-color: #336791;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff !important;
+  text-decoration: none;
+  background-color: #336791;
 }
 
 /** HOME PAGE */
@@ -281,10 +303,6 @@ hr {
   width: auto;
 }
 
-.page-list .btn-group .dropdown-menu> .dropdown-item {
-  color: #007bff !important;
-}
-
 .page-list .btn-group .dropdown-menu> .dropdown-item:active {
   background-color: #ffffff;
 }
@@ -300,8 +318,12 @@ hr {
 }
 
 .pagination .page-link {
-  color: #007bff !important;
+  color: #336791 !important;
   background-color: #fff;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+  background-color: #336791;
 }
 
 .pagination .active .page-link {
