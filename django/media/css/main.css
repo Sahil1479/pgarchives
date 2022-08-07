@@ -34,7 +34,9 @@ dl, ol, ul {
 }
 
 .table td, .table th {
-  padding: 0.5rem;
+  padding: 0rem;
+  font-size: 13px;
+  min-width: 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
