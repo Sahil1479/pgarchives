@@ -50,3 +50,20 @@ function monthlistSearch() {
         }
     }
 }
+
+
+ /**
+   * Copy message id to clipboard
+   */
+ function copyMessageID() {
+    var copyText = document.getElementById("messageId-text");
+    navigator.clipboard.writeText(copyText.innerHTML);
+    
+    var tooltip = document.getElementById("messageidTooltip");
+    tooltip.innerHTML = "Copied!";
+  }
+  
+ function outCopyMessageID() {
+    var tooltip = document.getElementById("messageidTooltip");
+    tooltip.innerHTML = "Copy to clipboard";
+  }
