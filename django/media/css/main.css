@@ -34,8 +34,7 @@ dl, ol, ul {
 }
 
 .table td, .table th {
-  padding: 0rem;
-  font-size: 13px;
+  padding: 5px;
   min-width: 5rem;
 }
 
@@ -215,6 +214,11 @@ hr {
   background-color: #326690;
 }
 
+.datalist_data th, td {
+  padding: 0px;
+  font-size: 13px;
+}
+
 .daylist_data:hover {
   background-color: #efefef !important;
 }
@@ -340,8 +344,13 @@ hr {
   background-color: #336791;
 }
 
+#pgContentWrap .mail-list-data td{
+  font-size: 11.5pt;
+}
+
 #pgContentWrap .list-header .list-table-header-text .th-inner {
   color: #fff;
+  text-align: center;
 }
 
 /**
@@ -962,6 +971,7 @@ input[type=checkbox] {
 /* For the thread viewer, keep the width inline with the parent element */
 #thread_select.custom-select {
   width: auto;
+  padding: 3px 30px 3px 3px;
 }
 
 th.formfieldnamecontainer {
@@ -1064,8 +1074,71 @@ h3.messages {
 }
 
 .message-header th, .message-header td {
-    padding: 0;
+  font-size: 11px;
+  min-width: 100px;
+  vertical-align: top;
+  padding: 5px 0px 5px 0px;
  }
+
+ .message-header th i {
+  margin-left: 0px;
+ }
+
+.message-header .messageTooltip {
+  position: relative;
+  display: inline-block;
+  margin-left: 3px;
+  font-size: 10px;
+}
+
+.message-header .messageTooltip .message-tooltip-text {
+  visibility: hidden;
+  width: 140px;
+  font-size: 12px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.message-header .messageTooltip button {
+  padding: 0px;
+  border: 1px solid #b2b2b2;
+  border-radius: 3px;
+}
+
+.message-header .messageTooltip .message-tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: 0px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.message-header .messageTooltip button:hover {
+  cursor: pointer;
+  background-color: #336791;
+}
+
+.message-header .messageTooltip:hover i {
+  color: #ffff !important;
+}
+
+.message-header .messageTooltip:hover .message-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
 
 .message-header select {
     height: auto;
