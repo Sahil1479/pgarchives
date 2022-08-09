@@ -98,7 +98,9 @@
     id="table"
     data-toggle="table"
     data-pagination="true"
-    data-page-list="[1, 5, 10, 20, 50, all]"
+    data-page-size="All"
+    data-pagination-v-align="top"
+    data-page-list="[All, 10, 20, 50]"
     data-buttons-class="primary"
     data-search="true">
     <thead class="list-header">
@@ -109,7 +111,7 @@
     </thead>
     <tbody>
       {%for l in g.lists%}
-      <tr>
+      <tr class="mail-list-data">
         <th scope="row"><a href="/list/{{l.listname}}/">{{l.maybe_shortdesc}}</a></th>
         <td>{{l.description|safe}}</td>
       </tr>
