@@ -2,33 +2,41 @@
 
 <table class="table-sm table-responsive message-header" style="border-bottom: 0.05em solid #E7EAE8; margin-bottom: 1em;">
  <tr>
-  <th scope="row" style="width: 10%">From:</th>
+  <th scope="row" style="width: 10%"><i class="fa fa-angle-double-right" aria-hidden="true"></i> From:</th>
   <td>{{msg.mailfrom|hidemail}}</td>
  </tr>
  <tr>
-  <th scope="row">To:</th>
+  <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> To:</th>
   <td>{{msg.to|hidemail}}</td>
  </tr>
 {%if msg.cc%}
  <tr>
-  <th scope="row">Cc:</th>
+  <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cc:</th>
   <td>{{msg.cc|hidemail}}</td>
  </tr>
 {%endif%}
  <tr>
-  <th scope="row">Subject:</th>
+  <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Subject:</th>
   <td>{%if not msg.hiddenstatus%}{{msg.subject}}{%endif%}</td>
  </tr>
  <tr>
-  <th scope="row">Date:</th>
+  <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Date:</th>
   <td>{{msg.printdate}}</td>
  </tr>
  <tr>
-  <th scope="row">Message-ID:</th>
-  <td><a href="/message-id/{{msg.messageid|urlencode}}">{{msg.messageid}}</a></td>
+  <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Message-ID:</th>
+  <td>
+    <a href="/message-id/{{msg.messageid|urlencode}}" id="messageId-text">{{msg.messageid}}</a>
+    <div class="messageTooltip">
+      <button onclick="copyMessageID()" onmouseout="outCopyMessageID()">
+        <span class="message-tooltip-text" id="messageidTooltip">Copy to clipboard</span>
+        <i class="fa fa-clipboard" aria-hidden="true"></i>
+      </button>  
+    </div>
+  </td>
  </tr>
  <tr>
-   <th class="align-middle" scope="row">Views:</th>
+   <th class="align-middle" scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Views:</th>
    <td>
      <a href="/message-id/raw/{{msg.messageid|urlencode}}">Raw Message</a> |
      <a href="/message-id/flat/{{msg.messageid|urlencode}}">Whole Thread</a> |
@@ -38,10 +46,10 @@
  </tr>
  {% if not show_all %}
    <tr>
-    <th class="align-middle" scope="row">Thread:</th>
+    <th class="align-middle" scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Thread:</th>
     <td>
      <select id="thread_select" class="custom-select">
-  {%for m in threadstruct%}{%if m.id%}<option value="{{m.messageid|urlencode}}"{%if m.id == msg.id%} selected="selected"{%endif%}>{{m.indent|safe}}{{m.printdate}} from {{m.mailfrom|hidemail}}{% if m.hasattachment %}	&#x1f4ce;{% endif %}</option>{%endif%}
+  {%for m in threadstruct%}{%if m.id%}<option value="{{m.messageid|urlencode}}"{%if m.id == msg.id%} selected="selected"{%endif%}>{{m.indent|safe}}{{m.printdate}} from {{m.mailfrom|nameonly}} {% if m.hasattachment %}	<div style="margin-inline: 3px;"> &#x1f4ce;</div>{% endif %}</option>{%endif%}
   {%endfor%}
      </select>
     </td>
@@ -49,7 +57,7 @@
   {% endif %}
   {% if lists %}
     <tr>
-      <th scope="row">Lists:</th>
+      <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Lists:</th>
       <td>
         {%for l in lists %}
           <span class="listname"><a href="/list/{{l.listname}}/since/{{msg.shortdate}}">{{l.listname}}</a></span>
