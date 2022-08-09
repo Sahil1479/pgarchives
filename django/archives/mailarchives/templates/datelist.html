@@ -29,8 +29,8 @@
       <thead class="list-header">
         <tr>
           <th scope="col" style="width: 60%;" class="list-table-header-text" data-field="threadname">Thread</th>
-          <th scope="col" style="width: 30%;" class="list-table-header-text" data-field="threadauthor">Author</th>
-          <th scope="col" style="width: 10%;" class="list-table-header-text" data-field="threadtime">Time</th>
+          <th scope="col" style="width: 30%;" class="list-table-header-text" data-field="threadauthor"><i class="fa fa-user" aria-hidden="true" style="color: #ffffff;"></i> Author</th>
+          <th scope="col" style="width: 10%;" class="list-table-header-text" data-field="threadtime"><i style="color: #ffffff;" class="fa">&#xf017;</i> Time</th>
         </tr>
       </thead>
       <tbody>
@@ -39,8 +39,8 @@
         <th style="padding: 3px;">
           <a href="/message-id/{{m.messageid|urlencode}}">{{m.subject|default:"[No subject]"}} {% if m.has_attachment %} &#x1f4ce;{% endif %}</a>
         </th>
-        <td><i class="fa fa-user" aria-hidden="true" style="color: #004b87;"></i> {{m.mailfrom|nameonly}}</td>
-        <td><i style="color: #004b87;" class="fa">&#xf017;</i> {{m.date.time|time:"H:i"}}</td>
+        <td style="text-align: center;">{{m.mailfrom|nameonly}}</td>
+        <td style="text-align: center;">{{m.date.time|time:"H:i"}}</td>
       </tr>
       {%if forloop.last%}
     </tbody>
