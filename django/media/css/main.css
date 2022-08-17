@@ -1084,6 +1084,33 @@ h3.messages {
   margin-left: 0px;
  }
 
+ .message-header .more_info {
+  margin-inline-end: 3px;
+  border-bottom: 1px dotted #000;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.message-header .more_info:hover {
+  color: #840032;
+  background-color: #ededed;
+}
+
+.message-header .more_info .popup {
+  position: absolute;
+  top: 15px; /*must overlap parent element otherwise pop-up doesn't stay open when rolloing over '*/
+  color: white;
+  background: #676767;
+  border: 1px solid #ccc;
+  padding: 8px;
+  left: 0;
+  max-width: 240px;
+  min-width: 180px;
+  z-index: 100;
+  display: none;
+}
+
 .message-header .messageTooltip {
   position: relative;
   display: inline-block;
@@ -1143,6 +1170,19 @@ h3.messages {
 .message-header select {
     height: auto;
     padding: 0;
+}
+
+.message-header .message-view-button {
+  color: #326690 !important;
+  padding: 5px;
+  border: 1px solid #9e9d9d;
+  border-radius: 5px;
+  margin: 3px;
+}
+
+.message-header .message-view-button:hover {
+  color: #ffffff !important;
+  background: #326690;
 }
 
 .message-content {
