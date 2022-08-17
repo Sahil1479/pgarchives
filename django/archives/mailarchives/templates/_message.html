@@ -3,16 +3,23 @@
 <table class="table-sm table-responsive message-header" style="border-bottom: 0.05em solid #E7EAE8; margin-bottom: 1em;">
  <tr>
   <th scope="row" style="width: 10%"><i class="fa fa-angle-double-right" aria-hidden="true"></i> From:</th>
-  <td>{{msg.mailfrom|hidemail}}</td>
+  <td><span class="more_info">{{msg.mailfrom|nameonly}}<div class="popup">{{msg.mailfrom|emailonly}}</div></span></td>
  </tr>
  <tr>
   <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> To:</th>
-  <td>{{msg.to|hidemail}}</td>
+  <td>
+    {% for item in msg.to|splitbycomma %}
+      <span class="more_info">{{item|nameonly}}<div class="popup">{{item|emailonly}} </div></span>
+    {% endfor %}
  </tr>
 {%if msg.cc%}
  <tr>
   <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Cc:</th>
-  <td>{{msg.cc|hidemail}}</td>
+  <td>
+    {% for item in msg.cc|splitbycomma %}
+      <span class="more_info">{{item|nameonly}}<div class="popup">{{item|emailonly}} </div></span>
+    {% endfor %}
+  </td>
  </tr>
 {%endif%}
  <tr>
@@ -24,35 +31,41 @@
   <td>{{msg.printdate}}</td>
  </tr>
  <tr>
-  <th scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Message-ID:</th>
+  <th scope="row" style="vertical-align: middle;"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Message-ID:</th>
   <td>
-    <a href="/message-id/{{msg.messageid|urlencode}}" id="messageId-text">{{msg.messageid}}</a>
     <div class="messageTooltip">
-      <button onclick="copyMessageID()" onmouseout="outCopyMessageID()">
-        <span class="message-tooltip-text" id="messageidTooltip">Copy to clipboard</span>
-        <i class="fa fa-clipboard" aria-hidden="true"></i>
-      </button>  
+    <button onclick="copyMessageID()" onmouseout="outCopyMessageID()">
+      <span class="message-tooltip-text" id="messageidTooltip">Copy to clipboard</span>
+      <i class="fa fa-clipboard" aria-hidden="true"></i>
+    </button>  
     </div>
   </td>
  </tr>
  <tr>
+  <th colspan="2" style="padding: 5px 0px 10px 20px">
+    <a href="/message-id/{{msg.messageid|urlencode}}" id="messageId-text">{{msg.messageid}}</a>
+  </th>
+ </tr>
+ <tr>
    <th class="align-middle" scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Views:</th>
-   <td>
-     <a href="/message-id/raw/{{msg.messageid|urlencode}}">Raw Message</a> |
-     <a href="/message-id/flat/{{msg.messageid|urlencode}}">Whole Thread</a> |
-     <a href="/message-id/mbox/{{msg.messageid|urlencode}}">Download mbox</a>
-{%if allow_resend %}| <a href="/message-id/resend/{{msg.messageid|urlencode}}">Resend email</a>{%endif%}
+   <td style="display: inline-flex; flex-wrap: wrap;">
+     <a class="message-view-button" href="/message-id/raw/{{msg.messageid|urlencode}}">Raw Message</a>
+     <a class="message-view-button" href="/message-id/flat/{{msg.messageid|urlencode}}">Whole Thread</a>
+     <a class="message-view-button" href="/message-id/mbox/{{msg.messageid|urlencode}}">Download mbox</a>
+{%if allow_resend %} <a class="message-view-button" href="/message-id/resend/{{msg.messageid|urlencode}}">Resend email</a>{%endif%}
    </td>
  </tr>
  {% if not show_all %}
    <tr>
     <th class="align-middle" scope="row"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Thread:</th>
-    <td>
-     <select id="thread_select" class="custom-select">
-  {%for m in threadstruct%}{%if m.id%}<option value="{{m.messageid|urlencode}}"{%if m.id == msg.id%} selected="selected"{%endif%}>{{m.indent|safe}}{{m.printdate}} from {{m.mailfrom|nameonly}} {% if m.hasattachment %}	<div style="margin-inline: 3px;"> &#x1f4ce;</div>{% endif %}</option>{%endif%}
-  {%endfor%}
-     </select>
-    </td>
+   </tr>
+   <tr>
+    <th colspan="2" style="padding: 5px 0px 10px 20px">
+      <select id="thread_select" class="custom-select">
+        {%for m in threadstruct%}{%if m.id%}<option value="{{m.messageid|urlencode}}"{%if m.id == msg.id%} selected="selected"{%endif%}>{{m.indent|safe}}{{m.printdate}} from {{m.mailfrom|nameonly}} {% if m.hasattachment %}	<div style="margin-inline: 3px;"> &#x1f4ce;</div>{% endif %}</option>{%endif%}
+        {%endfor%}
+      </select>
+     </th>
    </tr>
   {% endif %}
   {% if lists %}
