@@ -53,6 +53,19 @@ def nameonly(value):
     return email.split('@')[0]
 
 
+@register.filter(name='emailonly')
+@stringfilter
+def emailonly(value):
+    (name, email) = parseaddr(value)
+    return email
+
+
+@register.filter(name='splitbycomma')
+@stringfilter
+def splitbycomma(value):
+    return value.split(', ')
+
+
 @register.filter(name='md5')
 @stringfilter
 def md5(value):
